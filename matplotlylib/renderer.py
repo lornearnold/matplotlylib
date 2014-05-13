@@ -817,14 +817,14 @@ def fig_to_plotly(fig, username=None, api_key=None, notebook=False,
     https://plot.ly/api/python/getting-started
 
     """
-    import plotly
+    import plotly.plotly as py
     renderer = PlotlyRenderer()
     Exporter(renderer).run(fig)
     if resize:
         renderer.resize()
     if strip_style:
         renderer.strip_style()
-    py = plotly.plotly(username, api_key)
+    py.sign_in(username, api_key)
     data = renderer.data.get_json()
     layout = renderer.layout.get_json()
     if notebook:
